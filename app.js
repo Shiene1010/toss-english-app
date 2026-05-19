@@ -122,31 +122,43 @@ function nextCard() {
   renderCard();
 }
 
-// 6. 보상형 전면 광고 레이어 (수익 모델 유지)
+// 6. 보상형 전면 광고 레이어 (수익 모델의 핵심)
 function renderAdModal() {
   contentArea.innerHTML = `
-    <div id="adModal" class="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl border border-red-100 text-center space-y-6 opacity-0 translate-y-2 transform transition-all duration-300">
+    <div class="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl border border-red-100 text-center space-y-6">
       <div class="text-4xl">🔒</div>
       <h3 class="text-xl font-bold">다음 표현 2개가 잠겨있습니다</h3>
-      <p class="text-sm text-gray-500">30초 광고를 시청하시면<br>나머지 나곡중 교과서 표현이 즉시 해금됩니다.</p>
-      <button onclick="simulateAdWatch()" class="w-full bg-[#FF4B4B] text-white py-4 rounded-xl font-semibold shadow-lg shadow-red-100">광고 보고 해금하기</button>
-      <button onclick="renderMainMenu()" class="w-full bg-white border border-gray-200 py-3 rounded-xl">취소</button>
+      <p class="text-sm text-gray-500">광고를 시청하시면<br>나곡중 교과서 표현이 즉시 해금됩니다.</p>
+      <!-- 실제 토스 광고 호출 함수로 변경 -->
+      <button onclick="playTossRewardAd()" class="w-full bg-[#FF4B4B] text-white py-4 rounded-xl font-semibold shadow-lg shadow-red-100">광고 보고 해금하기</button>
     </div>
   `;
-
-  const modal = document.getElementById('adModal');
-  if (modal) requestAnimationFrame(() => modal.classList.remove('opacity-0', 'translate-y-2'));
 }
 
-// 7. 가상 광고 시청 완료 로직 (단원별 해금 적용)
-function simulateAdWatch() {
-  // 실제 환경에서는 토스 SDK 또는 광고 SDK 연동 구간
-  alert("🎁 보상형 광고 시청이 완료되었습니다! (토스 SDK 연동 구간)");
-  // 현재 단원 해금 처리
-  adUnlocked[currentLesson] = true;
-  // 잠금 해제 후 4번째 문장으로 이동
-  currentIdx = 3;
-  renderCard();
+// 7. 실제 앱스인토스 광고 SDK 호출 및 연동 점검 로직
+function playTossRewardAd() {
+  // 토스 앱 내부 환경인지 감지
+  if (window.toss && window.toss.showRewardAd) {
+    // 토스 공식 광고 가이드라인 규격 호출
+    window.toss.showRewardAd({
+      // 심사 전 테스트 단계에서는 토스 공용 테스트 ID를 사용합니다
+      adUnitId: "TEST_REWARD_AD_UNIT_ID", 
+      onSuccess: function() {
+        // 유저가 광고를 끝까지 보았을 때 실행되는 수익 정산 트리거
+        currentIdx = 3; // 4번째 문장 구간으로 인덱스 이동
+        renderCard();
+      },
+      onFailure: function(error) {
+        alert("광고 시청이 완료되지 않았습니다. 다시 시도해 주세요.");
+        renderCard(); // 에러 시 안전하게 현재 카드로 롤백
+      }
+    });
+  } else {
+    // 브라우저나 VS Code 라이브 서버에서 테스트할 때를 위한 디버깅용 코드
+    console.log("[점검] 토스 외부 환경입니다. 가상 해금을 실행합니다.");
+    currentIdx = 3; 
+    renderCard();
+  }
 }
 
 // 8. Web Speech API를 이용한 문장 낭독 기능
