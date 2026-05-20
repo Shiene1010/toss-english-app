@@ -1,1 +1,26 @@
+# 🍏 Mac OS 시스템 파일 (M1 맥미니 필수 제외)
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# 🛠️ 개발 도구 및 로컬 설정 (VS Code 및 Live Server)
+.vscode/
+*.code-workspace
+.history/
+.live-server/
+
+# 📦 의존성 및 패키지 (추후 npm 패키지 추가 대비)
+node_modules/
+/dist
+/build
+
+# 🌐 배포 설정 파일 (Vercel 환경 파일 및 임시 폴더)
 .vercel
+.env
+.env.*
+*.local
+
