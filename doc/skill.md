@@ -1,70 +1,51 @@
 # 🛠️ TECHNICAL OPERATIONAL SKILL MATRIX
 
-> **Purpose**: This file acts as your terminal cheat-sheet. It catalogs the precise commands required to verify your environment, execute clean compilations, resolve runtime path bugs, and push updates to the cloud.
+> **Purpose**: The absolute engineering command-sheet for compiling, hosting, and debugging the Apps in Toss infrastructure on Apple Silicon hardware.
 
-## 🔍 1. Environmental Health Check (자연상태 확인)
-Run these commands to confirm that your node environment and global package managers are responsive on your Apple Silicon hardware:
+## 🔍 1. Terminal Environment Health Check
 ```bash
-# Verify JavaScript engine & workspace node version
+# Verify localized javascript runtime version
 node -v
 
-# Check package integrity manager
+# Audit dependency manager version
 npm -v
-
-# Audit system global homebrew manager
-brew -v
 ```
 
-## 🏗️ 2. The Golden Optimization Loop (로컬 빌드)
-Whenever you modify `app.js` or `index.html` in VS Code, execute this cycle to pack your human-readable scripts into compressed binaries:
+## 🏗️ 2. The Artifact Compiler Pipeline (AIT Production Build)
+*Technical Realization*: This process behaves exactly like **Android's Gradle compilation (.apk)** or **iOS's Xcode Release bundling (.ipa)**. It compiles human-readable code, maps configuration properties from `granite.config.ts`, and locks them into a secure, cryptographic `.ait` binary artifact ready for platform deployment.
+
 ```bash
-# Move to workspace root
+# 1. Travel to workspace root
 cd ~/Developer/workspaces/toss-english-app
 
-# Delete the old distribution folder to prevent stale cache contamination
-rm -rf dist
-
-# Trigger Vite compiler to output optimized code bundle
+# 2. Fire the engine to compile and build the .ait platform bundle
 npm run build
 ```
+- **Output Target**: `nagok-m01-english.ait`
+- **Deployment Action**: Drag-and-drop the generated file straight into the Toss Developer Console version manager card.
 
-## 🌐 3. Cloud Synchronization Playbook (Vercel 배포)
-To push your compiled `dist/` workspace assets live to production without encountering path-mismatch errors or Vercel CLI 50+ directory parsing warnings, execute the path routing sequence directly from your project root folder:
+## 🌐 3. Legacy Web Fallback Routing (Vercel Host Check)
+If testing a static version over the web or maintaining fallback mirrors without full .ait framework encapsulation:
 ```bash
-# Force Vercel to overwrite global server network cache with the compiled folder
+# Clear old distributions, recompile raw dist, and push live bypassing server caches
+rm -rf dist && npm run build
 vercel ./dist --prod --force
 ```
-<<<<<<< HEAD
-*Live Application Target Handle: `nagok-english-final`*
-=======
-*Live Application Target Handle: `nagok-english`*
->>>>>>> 4e5954f (feat: .gitignore 및 문서 파일 추가 및 업데이트)
 
-## 🐙 4. Code Archive & Portfolio Versioning (Git & GitHub)
-Sync your workspace cleanly to your remote GitHub account without uploading localized garbage binaries:
+## 🐙 4. Repository Synchronization
 ```bash
-# Check current staging updates
-git status
-
-# Stage all tracking parameters (.gitignore automatically screens out dist/ and .vercel/)
 git add .
-
-# Record baseline snapshot
-git commit -m "feat: updated core module sequence"
-
-# Push straight up to the cloud repository branch
+git commit -m "build: locked down native granite artifact compiler matrix"
 git push origin main
 ```
 
-## 🚨 5. Emergency Recovery Protocol (버튼/화면 먹통 시 긴급 조치)
-If your deployed URL shows a blank canvas or if the application choice buttons become unresponsive, run this script checklist instantly:
-1. Open the live URL on your desktop. Press `Cmd + Option + I` and inspect the **Console** tab.
-2. If you see an asset 404 pathing error, open `vite.config.js` and verify it contains `base: './'`.
-3. If files are sound but buttons are dead, force a clean cache invalidate via your Mac terminal:
+## 🚨 5. Emergency Recovery Playbook (Troubleshooting)
+If the console prints a `플러그인 옵션이 올바르지 않습니다` message or compilation aborts with a parameter mismatch:
+1. Ensure the `appName` string in `granite.config.ts` matches your registered console handle (`nagok-m01-english`) to the exact character.
+2. Verify the required `web` descriptor object contains the `host`, `port`, and `commands` objects.
+3. If deep configuration caches get stuck, execute a hard workspace reset:
 ```bash
-cd ~/Developer/workspaces/toss-english-app
-rm -rf node_modules package-lock.json dist .vercel
+rm -rf node_modules package-lock.json dist .vercel .vercel-build-cache nagok-m01-english.ait
 npm install
 npm run build
-vercel ./dist --prod --force
 ```

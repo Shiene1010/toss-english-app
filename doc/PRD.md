@@ -1,24 +1,18 @@
 # Product Requirements Document (PRD)
 
 ## 1. Project Overview
-<<<<<<< HEAD
 - **Project Name**: 나곡중 1학년 영어 교과서 표현 학습 미니앱 (Nakok English Express)
-- **Target Audience**: 1st-grade students at Nakok Middle School & parents preparing for school exams.
-=======
-- **Project Name**: 나곡중 1학년 영어 교과서 표현 학습 미니앱 (Nagok English Express)
-- **Target Audience**: 1st-grade students at Nagok Middle School & parents preparing for school exams.
->>>>>>> 4e5954f (feat: .gitignore 및 문서 파일 추가 및 업데이트)
-- **Platform**: Apps in Toss (In-app WebView architecture).
-- **Core Value**: Overcome user friction by offering a 100% serverless, zero-signup interactive flashcard experience that loads instantly inside Toss.
+- **Toss System ID**: `nagok-m01-english`
+- **Target Audience**: 1st-grade students at Nakok Middle School & parents preparing for local school exams.
+- **Platform**: Apps in Toss (Native App Bundle Deployment via `.ait` execution layer).
 
-## 2. Design & Branding System
-- **Core Theme**: Native Toss UI Experience.
-- **Primary Brand Color**: Toss Blue (`#3182F6`) for interactive elements and primary buttons.
-- **Typography Layout**: Main Text (`#191F28`), Secondary Labels (`#4E5968`), Light Canvas Background (`#F2F4F6`).
-- **Layout Rule**: Deeply rounded corners (`rounded-2xl` / `rounded-3xl`) to align seamlessly with the Toss Design System (TDS).
+## 2. Design & Branding System (TDS Adaptation)
+- **Primary Brand Color**: Toss Blue (`#3182F6`) for interactive elements, focus selectors, and master navigation anchors.
+- **Typography Matrix**: Primary Headlines (`#191F28`), Descriptive Labels (`#4E5968`), Viewport Canvas (`#F2F4F6`), Container Fill (`#FFFFFF`).
+- **Component Geometry**: Elements require smooth curves. Card blocks apply `rounded-3xl` and click targets map to `rounded-xl`. Strict grid block patterns are forbidden.
 
-## 3. Functionality & Business Monetization Matrix
-- **Curriculum Processing**: Dynamic parsing of 1st-Term textbook data (Lessons 1 through 4).
-- **Voice Synthesizer (🔊)**: Web Speech API integration triggering a clear American accent engine (`en-US`) at an accessible pace (`0.9 rate`).
-- **Ad Reward Gate (🔒)**: Monetization boundary hard-coded at index count 3. 
-- **SDK Handshake**: Hook into the native `window.toss.showRewardAd` system. If a student finishes the 30-second video block successfully (`onSuccess`), unlock the final 2 sentences of the current lesson.
+## 3. Core Functionality & Revenue Mechanics
+- **Curriculum Scope**: Processing of 1st-Term textbook data (Lessons 1 through 4) without a remote database server dependency.
+- **Voice Synthesizer (🔊)**: Local Web Speech API injection triggering an American accent engine (`en-US`) calibrated to a student-friendly pace (`0.9 rate`).
+- **Ad Reward Gate (🔒)**: Monetization boundary hard-coded at index counter state 3.
+- **Platform Handshake**: Native execution loop hooked into `window.toss.showRewardAd`. If a user clears the 30-second video verification block successfully (`onSuccess`), unlock the remaining content payload.

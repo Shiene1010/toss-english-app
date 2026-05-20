@@ -1,20 +1,31 @@
-# Engineering & Build System Architecture
+# System Configuration Blueprint
 
-## 1. Local Environment Parameters (M1 Mac Mini)
-- **Runtime**: Node.js `v22.x.x` / NPM `11.x.x`
-- **IDE**: Visual Studio Code (Native Apple Silicon Build)
-- **Required Extensions**: Live Server, Prettier, Tailwind CSS IntelliSense
+## 1. Local Stack Profile (M1 Mac Mini)
+- **Runtime**: Node.js `v22.22.1` / NPM `11.12.1`
+- **IDE**: Visual Studio Code (Native Apple Silicon Architecture Build)
+- **Core Compiler**: Vite `v8.x.x` managed via the `@apps-in-toss/web-framework` wrapper framework.
 
-## 2. Compilation Matrix (Vite)
-To optimize performance and code security for the 30M+ Toss user base, the source directory must go through a production compiler.
-- **Compiler**: Vite v6+
-- **Output Mode**: Modern ES Modules (`"type": "module"` initialized).
-- **Asset Directory Rule**: Relative pathways (`base: './'`) enforced via `vite.config.js` to eliminate 404 resource asset mapping failures on distributed cloud networks.
+## 2. The Artifact Package Controller (`granite.config.ts`)
+To pass platform-level validation, your project descriptor config must explicitly declare the target portal registration parameters (`nagok-m01-english`) alongside a verified `web` execution mapping signature:
 
-## 3. Runtime Event Binding Solution
-To prevent Vite's tree-shaking minification matrix from stripping inline functional scopes, raw HTML inline events (`onclick`) are forbidden. 
-All actions must be attached using standard decoupled JavaScript event hooks inside a `DOMContentLoaded` lifecycle listener wrapper:
+```typescript
+import { defineConfig } from '@apps-in-toss/web-framework/config';
+export default defineConfig({
+  appName: 'nagok-m01-english',
+  brand: { displayName: '나곡중 영어단어장', primaryColor: '#3182F6', icon: '' },
+  web: { host: 'localhost', port: 5173, commands: { dev: 'vite', build: 'vite build' } },
+  outdir: 'dist',
+  permissions: [],
+});
+```
+
+## 3. Decoupled Click Capture Event Architecture
+Inline script invocation handlers (e.g., `<button onclick="...">`) are completely forbidden inside the DOM schema. The Vite bundle engine strips absolute method assignments during dead-code elimination (Tree-shaking). All viewport behaviors must be bound safely inside the client-side lifecycle hook:
 
 ```javascript
-document.getElementById('targetId').addEventListener('click', functionalCallback);
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.menu-btn').forEach(btn => {
+    btn.addEventListener('click', eventCallback);
+  });
+});
 ```
