@@ -1,73 +1,70 @@
 # 🎒 나곡중 1학년 1학기 영어 교과서 표현 학습 미니앱
 
-> **Apps in Toss(앱스인토스) 플랫폼 전용 미니앱**  
-> 비전공 1인 개발자가 최소한의 공수로 최대의 광고 수익을 내기 위해 설계된 하이브리드 광고형 웹앱입니다.
-
-## 🚀 프로젝트 개요
-- **플랫폼**: 앱스인토스 (Apps in Toss) 인앱 웹뷰
-- **타겟**: 용인 나곡중학교 1학년 학생 및 내신 대비 학부모
-- **핵심 가치**: 복잡한 기능(회원가입, 서버)을 과감히 제거하고, 토스 스타일(TDS)의 UI와 Web Speech API를 활용한 원어민 발음(🔊) 중심의 라이트한 카드 학습 경험 제공.
-- **비즈니스 모델**: 보상형 전면 광고 및 띠 배너 광고를 연동한 인앱 광고 수익 극대화.
+> **Apps in Toss (앱스인토스) 플랫폼 전용 초경량 수익형 미니앱**  
+> 비전공 1인 개발자가 최신 웹 표준 기술과 빌드 자동화 파이프라인을 구축하여, 최소 공수로 광고 수익을 극대화하도록 설계된 상용 모델입니다.
 
 ---
 
-## 🛠️ 개발 환경 및 사용 자원
-- **Device**: M1 Mac Mini (Apple Silicon 최적화)
-- **Editor**: Visual Studio Code (Extensions: Live Server, Prettier, Tailwind CSS IntelliSense)
-- **Runtime**: Node.js v22.22.1 / NPM 11.12.1
-- **Frontend Framework**: HTML5, Vanilla JavaScript, Tailwind CSS (CDN v3 라이브러리)
-- **Deployment**: Vercel CLI (`vercel --prod`)
+## 🚀 1. 프로젝트 주요 특징 (Core Value)
+- **Zero-Server / Serverless**: 백엔드 DB 유지를 위한 고정 비용 지출을 원천 차단했습니다. 유저 상태(학습 진도)는 100% 브라우저 메모리(`localStorage`)에서 격리 관리됩니다.
+- **Toss Style UI/UX**: 토스 디자인 시스템(TDS)의 정체성을 이식하여 `#3182F6(토스블루)` 컬러 셋과 볼드한 서체, 큰 라운드(둥근 모서리) 컴포넌트로 완벽한 인앱 일체감을 구현했습니다.
+- **원어민 음성 합성 (🔊)**: Web Speech API 스크립트를 내장하여 외부 오디오 라이브러리 탑재 없이 미국식 원어민 음성(중1 수준 맞춤 속도 0.9)을 즉각 출력합니다.
+- **수익 최적화 파이프라인 (🔒)**: 단원별 3번째 핵심 표현 소비 시점에 하이 테크 전면 보상형 광고 모달을 강제 렌더링하여 플랫폼 eCPM 정산 매출을 견인합니다.
 
 ---
 
-## 📂 폴더 구조 (Project Architecture)
+## 🛠️ 2. 시스템 개발 환경 및 기술 스택
+- **하드웨어 디바이스**: M1 Mac Mini (Apple Silicon 전용 Native 환경 세팅)
+- **런타임 및 의존성**: Node.js `v22.22.1` / NPM `11.12.1`
+- **핵심 컴포넌트 프레임워크**: HTML5 / JavaScript (Vanilla ES Modules) / Tailwind CSS (v3 CDN Engine)
+- **빌드/컴파일 오케스트레이션**: Vite `v8.x.x` (상대경로 매핑 및 난독화/최적화 압축 번들링 수행)
+- **클라우드 호스팅**: Vercel CLI `v50.0.1` (`/dist` 타겟 상용 배포 파이프라인 연동)
+- **형상 관리**: Git / GitHub CLI (`gh`)
+
+---
+
+## 📂 3. 디렉토리 구조 (Directory Architecture)
 ```text
 toss-english-app/
-├── assets/
-│   └── images/
-│       ├── app_logo_600.png              # 토스 등록용 앱 로고 (600x600)
-│       ├── app_thumbnail_1932.png        # 스토어 상세 배너 (1932x828)
-│       ├── screenshot_portrait_01.png   # 메인 화면 스크린샷 (636x1048)
-│       ├── screenshot_portrait_02.png   # 학습 화면 스크린샷 (636x1048)
-│       └── screenshot_landscape_01.png  # 가로형 스크린샷 (1504x741)
-├── index.html                            # 메인 UI 뼈대 및 토스 스타일 레이아웃
-├── app.js                                # 교과서 데이터베이스 및 광고 트리거 로직
-└── README.md                             # 프로젝트 개발 지침서 (현재 파일)
+├── assets/images/       # 플랫폼 등록 및 마케팅용 디자인 에셋 (.png)
+├── doc/                 # 프로젝트 핵심 설계 및 소울 문서군
+│   ├── PRD.md           # 기획 요구사항 및 비즈니스 모델 정의서
+│   ├── ARCHITECTURE.md  # 개발 환경 세팅 및 빌드 파라미터 기술서
+│   ├── DEPLOYMENT.md    # 클라우드 호스팅 및 플랫폼 심사 제출 체크리스트
+│   ├── instruction.md   # 🌟 AI 가이드라인 (코딩 컨벤션 및 금지 수칙 보존)
+│   └── skill.md         # 🌟 터미널 명령어 및 긴급 버그 복구 매뉴얼
+├── dist/                # Vite 컴파일러가 출력한 압축 앱 번들 (배포 대상 폴더)
+├── index.html           # 애플리케이션 프론트엔드 엔트리 뷰포트
+├── app.js               # 상태 제어 및 자바스크립트 이벤트 매트릭스 코어
+├── vite.config.js       # 자원 404 경로 파괴 방지용 빌드 환경 설정 파일
+├── .gitignore           # 원격 저장소 노출 차단 필터 시스템
+└── package.json         # 프로젝트 의존성 관리 및 NPM 스크립트 명세서
 ```
 
 ---
 
-## 💰 수익 모델 및 광고 트리거 설계 (Monetization)
+## ⚙️ 4. 기술적 핵심 과제 해결 기록 (Troubleshooting)
 
-본 프로젝트는 유저의 자연스러운 학습 몰입과 콘텐츠 해금 욕구를 결합하여 **광고 완료율(Completion Rate)과 eCPM을 극대화**합니다.
+### 🚨 Vite 컴파일러에 의한 클릭 이벤트(인라인 함수) 유실 해결
+- **문제 현상**: 웹 초기 빌드 시 HTML 내부에 `<button onclick="startLesson()">` 방식으로 작성된 코드들이, `npm run build` 가동 시 최적화 및 크래시 방지용 변수명 변경(Tree-shaking/Minify) 과정을 거치며 브라우저상에서 버튼이 완전히 먹통이 되는 버그가 발생했습니다.
+- **해결 방안**: 대대적인 구조 리팩토링을 단행하여, 인라인 트리거를 전면 폐기했습니다. `data-lesson="lesson1"`과 같은 시맨틱 데이터 속성을 부여하고, 자바스크립트 코어 내부에서 `DOMContentLoaded` 생명주기 타이밍에 맞추어 `addEventListener`로 클릭 수신기를 물리적으로 격리 바인딩하는 정석 구조로 전환하여 빌드 후에도 100% 작동의 안전성을 확보했습니다.
 
-1. **하단 고정 띠 배너 (Anchor Banner)**: 앱 로딩 및 카드 학습 화면 하단에 상시 노출되어 체류 시간 비례 안정적인 기본 매출 확보.
-2. **보상형 전면 광고 (Reward Video Ad) [핵심]**: 
-   - 각 단원별로 3번째 영어 문장 카드를 넘기는 시점에 화면 전체를 잠금(`showAdModal = true`).
-   - "광고 시청 후 남은 교과서 표현 해금" 버튼 유도.
-   - 토스 광고 SDK(`window.toss.showRewardAd`)와 연동하여 30초 시청 완료 성공 시(`onSuccess`) 다음 카드 인덱스로 안전하게 진입 및 정산.
+### 🚨 Vercel CLI 50 버전 경로 꼬임으로 인한 웹 자원 404 차단
+- **문제 현상**: 최신 Vercel CLI 엔진 업데이트로 인해 예전 방식의 폴더 이동 배포 및 `--dir` 파라미터가 유효하지 않아 404 에러가 나거나 잘못된 프로젝트 이름으로 설정되는 현상이 발생했습니다.
+- **해결 방안**: 프로젝트 루트에 `vite.config.js` 파일을 수립하여 자원 매핑 기본 경로를 절대경로가 아닌 상대경로(`base: './'`)로 하드 고정했습니다. 이후 배포 시 루트 경로 위치에서 `vercel ./dist --prod --force` 명령 체계를 정립하여 파일 시스템이 엉키는 현상을 원천 봉쇄했습니다.
 
 ---
 
-## 💻 로컬 실행 및 배포 방법 (How to Run)
+## 🏃‍♂️ 5. 실전 구동 가이드
+모든 배포 및 업데이트 주기는 `doc/skill.md`에 정의된 매뉴얼에 의거하여 기계적으로 가동됩니다.
 
-### 1. 로컬 테스트 (Local Development)
-1. VS Code에서 `toss-english-app` 폴더를 오픈합니다.
-2. `index.html` 파일을 열고 우하단의 **[Go Live]** 버튼을 클릭합니다.
-3. 브라우저 주소창이 무한 로딩에 걸릴 경우, 보안 정책에 따라 `127.0.0.1` 대신 `http://localhost:5500`으로 주소를 수동 전환하여 확인합니다.
-
-### 2. 인터넷 실시간 배포 (Production Deployment)
-M1 맥 터미널에서 Vercel을 이용해 주소가 있는 실시간 서버 주소로 1초 만에 배포합니다.
 ```bash
-# 최초 배포 시
-vercel
+# 1. 로컬 개발 서버 실시간 검증
+npm run dev
 
-# 코드 수정 후 실시간 상용 배포 업데이트 시
-vercel --prod
+# 2. 배포용 최적화 컴파일 및 압축 패키징
+npm run build
+
+# 3. Vercel 클라우드 서버에 최종 무효화 전송 (주소 최신화)
+vercel ./dist --prod --force
 ```
-
----
-
-## 🔒 개인정보처리방침 (Privacy Policy)
-- 본 미니앱은 별도의 회원가입 절차가 없으며, 사용자의 이름, 이메일, 기기 정보 등 어떠한 개인정보도 서버에 수집하거나 저장하지 않는 100% Serverless 정적 앱입니다.
-- 단원별 학습 상태 정보는 브라우저 내부의 `Local Storage`에만 저장되어 안전합니다.
