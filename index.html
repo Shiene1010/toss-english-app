@@ -11,8 +11,11 @@
 
   <!-- 상단 헤더 -->
   <header class="p-5 bg-white border-b border-gray-100 flex justify-between items-center">
-    <h1 class="text-xl font-bold tracking-tight text-[#3182F6]">Toss English</h1>
-    <button id="homeBtn" class="text-sm text-gray-500 hidden">처음으로</button>
+    <h1 class="text-xl font-bold tracking-tight text-[#3182F6]">나곡중 영어표현</h1>
+    <div class="flex items-center gap-3">
+      <button id="policyBtn" class="text-sm text-gray-500">개인정보처리방침</button>
+      <button id="homeBtn" class="text-sm text-gray-500 hidden">처음으로</button>
+    </div>
   </header>
 
   <!-- 메인 콘텐츠 영역 -->
@@ -20,12 +23,18 @@
     <!-- 자바스크립트가 여기에 화면을 그려줍니다 -->
   </main>
 
-  <!-- 하단 띠 배너 광고 영역 (공간 확보용) -->
-  <footer class="w-full bg-gray-200 text-center py-3 text-xs text-gray-400">
-    ADVERTISEMENT
+  <!-- 하단 띠 배너 및 필수 약관 영역 -->
+  <footer class="w-full bg-white border-t border-gray-100 text-center py-4 space-y-2">
+    <div class="text-xs text-gray-400 font-medium">ADVERTISEMENT</div>
+    <div class="flex justify-center space-x-4 text-[11px] text-gray-400">
+      <a href="#" onclick="alert('위에 작성한 개인정보처리방침 텍스트 내용을 여기에 팝업으로 띄우거나 별도 페이지로 연결합니다.')" class="hover:underline font-semibold text-gray-500">개인정보처리방침</a>
+      <span>|</span>
+      <span class="text-gray-400">© 2026 나곡중 영어단어장. All rights reserved.</span>
+    </div>
   </footer>
 
   <!-- 앱 로직 스크립트 연결 -->
+  <div id="modalRoot"></div>
   <script src="app.js"></script>
 </body>
 </html>

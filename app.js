@@ -192,5 +192,42 @@ function speakCurrentSentence() {
 // 홈 버튼 이벤트
 homeBtn.addEventListener('click', renderMainMenu);
 
+// 개인정보처리방침 버튼 이벤트 연결 (index.html에 policyBtn이 추가됨)
+const policyBtn = document.getElementById('policyBtn');
+if (policyBtn) {
+  policyBtn.addEventListener('click', () => {
+    renderPolicyModal();
+  });
+}
+
 // 앱 시작 시 첫 실행
 renderMainMenu();
+
+// 개인정보처리방침 모달 렌더링 함수
+function renderPolicyModal() {
+  const modalRoot = document.getElementById('modalRoot') || contentArea;
+  modalRoot.innerHTML = `
+    <div id="policyModal" class="fixed inset-0 flex items-end md:items-center justify-center p-4 z-50">
+      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div class="relative w-full max-w-lg bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-200">
+        <h3 class="text-lg font-bold mb-3">개인정보처리방침</h3>
+        <div class="text-sm text-gray-700 max-h-64 overflow-auto leading-relaxed">
+          <p>서비스명: 나곡중 영어표현</p>
+          <p>본 앱은 이용자 개인 식별 정보를 수집하지 않습니다. 자세한 내용은 프로젝트 루트의 PRIVACY_POLICY.md 파일을 확인하세요.</p>
+        </div>
+        <div class="mt-4 flex justify-end">
+          <button onclick="closePolicyModal()" class="px-4 py-2 rounded-lg bg-gray-100">닫기</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const modal = document.getElementById('policyModal');
+  if (modal) requestAnimationFrame(() => modal.classList.remove('opacity-0'));
+}
+
+function closePolicyModal() {
+  const modalRoot = document.getElementById('modalRoot') || contentArea;
+  const modal = document.getElementById('policyModal');
+  if (modal) modalRoot.innerHTML = '';
+}
