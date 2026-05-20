@@ -1,8 +1,13 @@
 # Product Requirements Document (PRD)
 
 ## 1. Project Overview
+<<<<<<< HEAD
 - **Project Name**: 나곡중 1학년 영어 교과서 표현 학습 미니앱 (Nakok English Express)
 - **Target Audience**: 1st-grade students at Nakok Middle School & parents preparing for school exams.
+=======
+- **Project Name**: 나곡중 1학년 영어 교과서 표현 학습 미니앱 (Nagok English Express)
+- **Target Audience**: 1st-grade students at Nagok Middle School & parents preparing for school exams.
+>>>>>>> 4e5954f (feat: .gitignore 및 문서 파일 추가 및 업데이트)
 - **Platform**: Apps in Toss (In-app WebView architecture).
 - **Core Value**: Overcome user friction by offering a 100% serverless, zero-signup interactive flashcard experience that loads instantly inside Toss.
 

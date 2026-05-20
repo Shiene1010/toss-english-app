@@ -34,7 +34,11 @@ To push your compiled `dist/` workspace assets live to production without encoun
 # Force Vercel to overwrite global server network cache with the compiled folder
 vercel ./dist --prod --force
 ```
+<<<<<<< HEAD
 *Live Application Target Handle: `nagok-english-final`*
+=======
+*Live Application Target Handle: `nagok-english`*
+>>>>>>> 4e5954f (feat: .gitignore 및 문서 파일 추가 및 업데이트)
 
 ## 🐙 4. Code Archive & Portfolio Versioning (Git & GitHub)
 Sync your workspace cleanly to your remote GitHub account without uploading localized garbage binaries:
